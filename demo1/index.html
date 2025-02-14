@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Surprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            
+        }
+        #scene {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #postman {
+            width: 200px;
+            position: absolute;
+            left: 20%;
+            bottom: 20%;
+        }
+        #boy {
+            width: 200px;
+            position: absolute;
+            right: 20%;
+            bottom: 20%;
+        }
+        #scroll {
+            width: 150px;
+            height: 100px;
+            background-color: #fff5e6;
+            border: 2px solid brown;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #messageBox {
+            display: none;
+            position: fixed;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: #ffe6e6;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        }
+        .hearts {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%);
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="scene">
+        <img id="postman" src="assets/postman.jpg" alt="Postman">
+        <img id="boy" src="assets/mocha.gif" alt="Boy">
+        <div id="scroll" onclick="openMessage()">📜 Hello Sir,Here is your parcel.</div>
+    </div>
+
+    <div id="messageBox">
+        <h2>Dear Dragon,</h2>
+        <p>ye hmara phla valentine hai sath may. I am so sorry main kuch special nhi kr pai pr ye chota sa try h umeed h tumhe acha lge. I don't have much to say just wanna thankyou for everything and for always to be there with me.</p>
+        <h3>Happy Valentines Day Dragon 💖</h3>
+        <p>Love, Raje</p>
+        <h2 style="color:red;">Lub ju too ju tooooo enaaaaa saarraaaaa Dragon ❤️</h2>
+    </div>
+
+    <script>
+        function openMessage() {
+            document.getElementById("scene").style.display = "none";
+            document.getElementById("messageBox").style.display = "block";
+            generateHearts();
+        }
+
+        function generateHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.className = "hearts";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+            setTimeout(generateHearts, 1000);
+        }
+    </script>
+</body>
+</html>
